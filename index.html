@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brian Collins — Customer Success at Arkose Labs</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --card: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --text: #f5f5f7;
+    --muted: #86868b;
+    --accent: #DA7756;
+    --accent2: #5B8DEF;
+    --accent3: #4ECDC4;
+    --accent4: #C084FC;
+    --success: #34D399;
+    --warning: #FBBF24;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(218,119,86,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 52px; font-weight: 700; line-height: 1.15; margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 20px; color: var(--muted); max-width: 680px; margin: 0 auto 40px;
+  }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+    padding: 32px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);
+    margin-bottom: 80px;
+  }
+  .stat-item { text-align: center; }
+  .stat-value { font-size: 36px; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 80px; }
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 12px;
+  }
+  .section-desc {
+    font-size: 17px; color: var(--muted); max-width: 640px; margin-bottom: 40px;
+  }
+
+  /* ── CAREER ARC ── */
+  .arc-track {
+    display: flex; gap: 0; position: relative;
+  }
+  .arc-track::before {
+    content: '';
+    position: absolute; top: 40px; left: 24px; right: 24px; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--accent4));
+    border-radius: 2px;
+  }
+  .arc-phase {
+    flex: 1; text-align: center; position: relative; padding-top: 64px;
+  }
+  .arc-dot {
+    position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 3px solid var(--bg);
+    z-index: 2;
+  }
+  .arc-phase:nth-child(1) .arc-dot { background: var(--accent); }
+  .arc-phase:nth-child(2) .arc-dot { background: var(--accent2); }
+  .arc-phase:nth-child(3) .arc-dot { background: var(--accent3); }
+  .arc-phase:nth-child(4) .arc-dot { background: var(--accent4); }
+  .arc-verb {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .arc-phase:nth-child(1) .arc-verb { color: var(--accent); }
+  .arc-phase:nth-child(2) .arc-verb { color: var(--accent2); }
+  .arc-phase:nth-child(3) .arc-verb { color: var(--accent3); }
+  .arc-phase:nth-child(4) .arc-verb { color: var(--accent4); }
+  .arc-domain { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .arc-sub { font-size: 13px; color: var(--muted); }
+  .arc-detail {
+    font-size: 13px; color: var(--muted); margin-top: 12px; padding: 0 8px; line-height: 1.5;
+  }
+
+  /* ── THESIS ── */
+  .thesis-box {
+    background: linear-gradient(135deg, rgba(218,119,86,0.1), rgba(218,119,86,0.02));
+    border: 1px solid rgba(218,119,86,0.2);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .thesis-box blockquote {
+    font-size: 22px; font-weight: 600; line-height: 1.5; max-width: 700px; margin: 0 auto;
+    font-style: italic;
+  }
+  .thesis-implication {
+    font-size: 15px; color: var(--muted); margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+
+  /* ── COMPETENCIES GRID ── */
+  .comp-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .comp-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 32px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .comp-card:hover { border-color: rgba(255,255,255,0.15); }
+  .comp-num {
+    font-size: 48px; font-weight: 800; position: absolute; top: 16px; right: 20px;
+    opacity: 0.06;
+  }
+  .comp-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .comp-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* ── PORTFOLIO (CHALLENGE → RESULT) ── */
+  .portfolio-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .portfolio-item:hover { border-color: rgba(255,255,255,0.15); }
+  .portfolio-item h3 {
+    font-size: 18px; font-weight: 700; grid-column: 1 / -1; margin-bottom: 4px;
+  }
+  .port-col-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .port-col-label.challenge { color: var(--warning); }
+  .port-col-label.action { color: var(--accent2); }
+  .port-col-label.result { color: var(--success); }
+  .port-col-text { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+  /* ── WHY ARKOSE ── */
+  .why-cards {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .why-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 32px 32px 32px 80px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .why-card:hover { border-color: rgba(255,255,255,0.15); }
+  .why-num {
+    position: absolute; left: 28px; top: 28px;
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700;
+  }
+  .why-card:nth-child(1) .why-num { background: rgba(218,119,86,0.15); color: var(--accent); }
+  .why-card:nth-child(2) .why-num { background: rgba(91,141,239,0.15); color: var(--accent2); }
+  .why-card:nth-child(3) .why-num { background: rgba(78,205,196,0.15); color: var(--accent3); }
+  .why-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .why-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* ── FIT MAPPING ── */
+  .fit-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+  }
+  .fit-table td {
+    padding: 18px 24px;
+    font-size: 15px;
+    vertical-align: middle;
+  }
+  .fit-need {
+    background: rgba(91,141,239,0.08);
+    border-radius: 10px 0 0 10px;
+    color: var(--accent2);
+    font-weight: 600;
+    width: 38%;
+  }
+  .fit-arrow {
+    background: var(--card);
+    text-align: center;
+    width: 50px;
+    color: var(--accent);
+    font-size: 20px;
+  }
+  .fit-deliver {
+    background: rgba(218,119,86,0.08);
+    border-radius: 0 10px 10px 0;
+    color: var(--text);
+  }
+
+  /* ── SWOT ── */
+  .swot-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .swot-cell {
+    border-radius: 14px;
+    padding: 28px;
+    border: 1px solid;
+  }
+  .swot-cell.s { background: rgba(52,211,153,0.06); border-color: rgba(52,211,153,0.2); }
+  .swot-cell.w { background: rgba(251,191,36,0.06); border-color: rgba(251,191,36,0.2); }
+  .swot-cell.o { background: rgba(91,141,239,0.06); border-color: rgba(91,141,239,0.2); }
+  .swot-cell.t { background: rgba(218,119,86,0.06); border-color: rgba(218,119,86,0.2); }
+  .swot-letter {
+    font-size: 28px; font-weight: 800; margin-bottom: 4px;
+  }
+  .swot-cell.s .swot-letter { color: var(--success); }
+  .swot-cell.w .swot-letter { color: var(--warning); }
+  .swot-cell.o .swot-letter { color: var(--accent2); }
+  .swot-cell.t .swot-letter { color: var(--accent); }
+  .swot-heading { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .swot-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* ── 90-DAY PLAN ── */
+  .plan-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+  }
+  .plan-phase {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 28px;
+    border-top: 3px solid;
+    transition: border-color 0.2s;
+  }
+  .plan-phase:nth-child(1) { border-top-color: var(--accent); }
+  .plan-phase:nth-child(2) { border-top-color: var(--accent2); }
+  .plan-phase:nth-child(3) { border-top-color: var(--accent3); }
+  .plan-days {
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .plan-phase:nth-child(1) .plan-days { color: var(--accent); }
+  .plan-phase:nth-child(2) .plan-days { color: var(--accent2); }
+  .plan-phase:nth-child(3) .plan-days { color: var(--accent3); }
+  .plan-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+  .plan-items { list-style: none; }
+  .plan-items li {
+    font-size: 13px; color: var(--muted); padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+  .plan-items li:last-child { border-bottom: none; }
+
+  /* ── VALUES ── */
+  .values-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+  }
+  .value-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .value-card:hover { border-color: rgba(255,255,255,0.15); }
+  .value-icon { font-size: 28px; margin-bottom: 10px; }
+  .value-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .value-sub { font-size: 13px; color: var(--muted); }
+
+  /* ── CLOSING ── */
+  .closing {
+    text-align: center; padding: 80px 0 100px;
+    border-top: 1px solid var(--card-border);
+  }
+  .closing-quote {
+    font-size: 24px; font-weight: 600; line-height: 1.5; max-width: 720px; margin: 0 auto 40px;
+  }
+  .closing-quote span { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 34px; }
+    .stat-strip { gap: 24px; }
+    .stat-value { font-size: 28px; }
+    .arc-track { flex-direction: column; gap: 24px; }
+    .arc-track::before { display: none; }
+    .arc-phase { padding-top: 0; text-align: left; padding-left: 40px; }
+    .arc-dot { left: 0; top: 4px; transform: none; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .portfolio-item { grid-template-columns: 1fr; }
+    .plan-grid { grid-template-columns: 1fr; }
+    .swot-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .fit-table td { display: block; width: 100%; border-radius: 0; }
+    .fit-need { border-radius: 10px 10px 0 0; }
+    .fit-deliver { border-radius: 0 0 10px 10px; }
+    .fit-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">Customer Success · Technical Account Manager</div>
+    <h1>Brian Collins → <span>Arkose Labs</span></h1>
+    <p class="hero-sub">20 years of deliberate career progression across infrastructure, DevOps, security, and AI governance — converging on fraud prevention.</p>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-item"><div class="stat-value">20</div><div class="stat-label">Years in CS</div></div>
+    <div class="stat-item"><div class="stat-value">120%+</div><div class="stat-label">Net Revenue Retention</div></div>
+    <div class="stat-item"><div class="stat-value">&lt;3%</div><div class="stat-label">Annual Churn</div></div>
+    <div class="stat-item"><div class="stat-value">15×</div><div class="stat-label">Revenue Growth</div></div>
+    <div class="stat-item"><div class="stat-value">2</div><div class="stat-label">IPO Journeys</div></div>
+  </div>
+
+  <!-- CAREER ARC -->
+  <section class="section">
+    <div class="section-label" style="color: var(--accent);">Career Arc</div>
+    <div class="section-title">20 Years of Deliberate Progression</div>
+    <div class="section-desc">Every move was a deliberate decision to develop full-lifecycle fluency across the modern software delivery chain.</div>
+
+    <div class="arc-track">
+      <div class="arc-phase">
+        <div class="arc-dot"></div>
+        <div class="arc-verb">Run</div>
+        <div class="arc-domain">Infrastructure</div>
+        <div class="arc-sub">Cloud-Native Hosting</div>
+        <div class="arc-detail">Built foundation at Rackspace. Learned to bridge complex technology with business outcomes.</div>
+      </div>
+      <div class="arc-phase">
+        <div class="arc-dot"></div>
+        <div class="arc-verb">Build</div>
+        <div class="arc-domain">DevOps</div>
+        <div class="arc-sub">Software Dev Platforms</div>
+        <div class="arc-detail">Expanded into DevOps at GitLab. Understood what it takes to build applications at scale.</div>
+      </div>
+      <div class="arc-phase">
+        <div class="arc-dot"></div>
+        <div class="arc-verb">Secure</div>
+        <div class="arc-domain">App Security</div>
+        <div class="arc-sub">Vulnerability Management</div>
+        <div class="arc-detail">Moved into application security at ArmorCode. Secured the software lifecycle end-to-end.</div>
+      </div>
+      <div class="arc-phase">
+        <div class="arc-dot"></div>
+        <div class="arc-verb">Automate</div>
+        <div class="arc-domain">AI Governance</div>
+        <div class="arc-sub">Exposure Management</div>
+        <div class="arc-detail">Operating at the frontier: AI exposure management. The convergence of all prior domains.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSIONAL THESIS -->
+  <section class="section">
+    <div class="section-label" style="color: var(--accent2);">Professional Thesis</div>
+    <div class="section-title">Proof-Driven CS Operator</div>
+    <div class="thesis-box">
+      <blockquote>"If customers can clearly see value, renewal is inevitable. If value is undocumented, renewal is fragile."</blockquote>
+      <p class="thesis-implication">Systems that make value visible → usage becomes documented proof → proof becomes renewal and expansion. In fraud prevention, value is invisible by nature. Brian makes it concrete.</p>
+    </div>
+  </section>
+
+  <!-- CORE COMPETENCIES -->
+  <section class="section">
+    <div class="section-label" style="color: var(--accent3);">Core Competencies</div>
+    <div class="section-title">Skills That Map to Arkose Labs</div>
+    <div class="section-desc">Four interlocking capabilities developed across two decades of enterprise security and CS execution.</div>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-num">01</div>
+        <div class="comp-title">Proof-Driven Value Architecture</div>
+        <div class="comp-text">Builds value systems that document exactly what customers get from the product, translate it into business language, and anchor every renewal in evidence. Critical in fraud prevention where value can be abstract.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-num">02</div>
+        <div class="comp-title">Enterprise Relationship Management</div>
+        <div class="comp-text">Managed portfolios of 10–15 enterprise accounts, $1–10M ARR. Comfortable in boardrooms and on technical calls. Builds trusted advisor relationships that survive leadership changes.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-num">03</div>
+        <div class="comp-title">Operational Embedment</div>
+        <div class="comp-text">The biggest failure in security is not the products — it's that customers don't operationalize what they buy. Closes that gap. Makes the product essential to how the customer works.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-num">04</div>
+        <div class="comp-title">Revenue Compounding</div>
+        <div class="comp-text">Doesn't just retain revenue — compounds it. 120%+ NRR and sub-3% annual churn is the direct output of making value visible, documented, and impossible to ignore.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section">
+    <div class="section-label" style="color: var(--warning);">Portfolio</div>
+    <div class="section-title">Systems Built, Results Delivered</div>
+    <div class="section-desc">Three projects that demonstrate how proof-driven value architecture translates into measurable outcomes.</div>
+
+    <div class="portfolio-item">
+      <h3>Proof-Driven Value System</h3>
+      <div>
+        <div class="port-col-label challenge">Challenge</div>
+        <div class="port-col-text">Renewal conversations dependent on relationship goodwill. Customers couldn't articulate value.</div>
+      </div>
+      <div>
+        <div class="port-col-label action">Action</div>
+        <div class="port-col-text">Designed systematic approach to documenting customer value at every touchpoint — from onboarding through QBRs.</div>
+      </div>
+      <div>
+        <div class="port-col-label result">Result</div>
+        <div class="port-col-text">Renewals shifted from cost justification to investment expansion. Directly contributed to 120%+ NRR.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item">
+      <h3>Detection-to-Remediation Playbooks</h3>
+      <div>
+        <div class="port-col-label challenge">Challenge</div>
+        <div class="port-col-text">Customers received vulnerability scan results but didn't know how to act on them.</div>
+      </div>
+      <div>
+        <div class="port-col-label action">Action</div>
+        <div class="port-col-text">Built comprehensive playbooks translating security findings into step-by-step remediation workflows.</div>
+      </div>
+      <div>
+        <div class="port-col-label result">Result</div>
+        <div class="port-col-text">Significantly improved time-to-remediation and deeper product adoption across the portfolio.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item">
+      <h3>Executive Security Narratives</h3>
+      <div>
+        <div class="port-col-label challenge">Challenge</div>
+        <div class="port-col-text">Security teams struggled to communicate risk to their C-suite in boardroom language.</div>
+      </div>
+      <div>
+        <div class="port-col-label action">Action</div>
+        <div class="port-col-text">Created executive-facing narratives reframing vulnerability data as business risk.</div>
+      </div>
+      <div>
+        <div class="port-col-label result">Result</div>
+        <div class="port-col-text">Customers saw the company as a strategic partner. Became a key retention tool across enterprise accounts.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ARKOSE LABS -->
+  <section class="section">
+    <div class="section-label" style="color: var(--accent4);">Why Arkose Labs</div>
+    <div class="section-title">Three Reasons</div>
+
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-num">1</div>
+        <h3>The Natural Next Chapter</h3>
+        <p>Prevention is the next critical layer in the software lifecycle. Infrastructure → DevOps → Security → AI Governance → Fraud Prevention. This is not a pivot — it's the convergence of 20 years of compounding expertise.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">2</div>
+        <h3>Mission Alignment</h3>
+        <p>The biggest failure in security isn't the products — it's that customers don't operationalize what they buy. That's Arkose Labs's challenge too: making fraud prevention an embedded operational capability, not just a purchased tool.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">3</div>
+        <h3>Trusted Advisor at Enterprise Scale</h3>
+        <p>Serving Microsoft, Meta, Adobe, and Roblox requires someone who can operate at the executive level and the technical level simultaneously. Deep architecture discussions in the morning, board-ready value narratives in the afternoon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONAL FIT -->
+  <section class="section">
+    <div class="section-label" style="color: var(--accent2);">Positional Fit</div>
+    <div class="section-title">What Arkose Needs → What Brian Delivers</div>
+
+    <table class="fit-table">
+      <tr>
+        <td class="fit-need">Enterprise CS Expertise</td>
+        <td class="fit-arrow">→</td>
+        <td class="fit-deliver">20 years managing multi-million-dollar portfolios</td>
+      </tr>
+      <tr>
+        <td class="fit-need">Security Domain Knowledge</td>
+        <td class="fit-arrow">→</td>
+        <td class="fit-deliver">Full-stack fluency from infrastructure through AI</td>
+      </tr>
+      <tr>
+        <td class="fit-need">Startup Builder Mentality</td>
+        <td class="fit-arrow">→</td>
+        <td class="fit-deliver">Built CS functions from zero — twice</td>
+      </tr>
+      <tr>
+        <td class="fit-need">Revenue Impact Driver</td>
+        <td class="fit-arrow">→</td>
+        <td class="fit-deliver">120%+ NRR, 3× and 15× growth, two IPO journeys</td>
+      </tr>
+      <tr>
+        <td class="fit-need">Fraud Prevention Understanding</td>
+        <td class="fit-arrow">→</td>
+        <td class="fit-deliver">Translates fraud economics into executive-ready ROI narratives</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- SWOT -->
+  <section class="section">
+    <div class="section-label" style="color: var(--success);">Self-Assessment</div>
+    <div class="section-title">SWOT Analysis</div>
+    <div class="section-desc">Honest self-evaluation — because credibility requires transparency.</div>
+
+    <div class="swot-grid">
+      <div class="swot-cell s">
+        <div class="swot-letter">S</div>
+        <div class="swot-heading">Strengths</div>
+        <div class="swot-text">Full software lifecycle expertise, proven enterprise results, and the ability to build from zero. Not theoretical — backed by two decades of execution.</div>
+      </div>
+      <div class="swot-cell w">
+        <div class="swot-letter">W</div>
+        <div class="swot-heading">Weaknesses</div>
+        <div class="swot-text">Growth edge around efficiency at scale. Constantly working to streamline documentation flows. Not a gap — an active area of investment toward executive-level responsibility.</div>
+      </div>
+      <div class="swot-cell o">
+        <div class="swot-letter">O</div>
+        <div class="swot-heading">Opportunities</div>
+        <div class="swot-text">Arkose Labs's position as a leading fraud prevention platform creates a unique chance to define what Customer Success looks like in this market category.</div>
+      </div>
+      <div class="swot-cell t">
+        <div class="swot-letter">T</div>
+        <div class="swot-heading">Threats</div>
+        <div class="swot-text">Enterprise fraud prevention market evolving rapidly. Competitive landscape still forming. But this is where CS shines brightest — helping customers navigate ambiguity.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 90-DAY PLAN -->
+  <section class="section">
+    <div class="section-label" style="color: var(--accent);">Execution Plan</div>
+    <div class="section-title">First 90 Days at Arkose Labs</div>
+    <div class="section-desc">Build the floor before the walls go up.</div>
+
+    <div class="plan-grid">
+      <div class="plan-phase">
+        <div class="plan-days">Days 1–30</div>
+        <div class="plan-title">Learn, Map & Listen</div>
+        <ul class="plan-items">
+          <li>Deep immersion into Arkose Labs's platform and fraud prevention landscape</li>
+          <li>Map every customer relationship and identify risk signals</li>
+          <li>Establish baseline health metrics</li>
+          <li>Sit in on every customer call possible</li>
+          <li>Build internal trust before changing anything</li>
+        </ul>
+      </div>
+      <div class="plan-phase">
+        <div class="plan-days">Days 31–60</div>
+        <div class="plan-title">Build the Foundation</div>
+        <ul class="plan-items">
+          <li>Create playbooks and onboarding frameworks for day-to-day use</li>
+          <li>Design QBR templates and value documentation standards</li>
+          <li>Understand escalation protocols and proactive risk reviews</li>
+          <li>Drive measurable adoption improvements — quick wins</li>
+          <li>Demonstrate TAM function value internally</li>
+        </ul>
+      </div>
+      <div class="plan-phase">
+        <div class="plan-days">Days 61–90</div>
+        <div class="plan-title">Drive Outcomes & Scale</div>
+        <ul class="plan-items">
+          <li>Deliver first documented customer value narratives</li>
+          <li>Identify expansion opportunities across portfolio</li>
+          <li>Execute scalable TAM frameworks with customers</li>
+          <li>Show early wins: NRR, adoption metrics, CSAT</li>
+          <li>Prove proficiency in processes so they can be repeated at scale</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section">
+    <div class="section-label" style="color: var(--accent3);">Values</div>
+    <div class="section-title">Operating System</div>
+    <div class="section-desc">The principles behind the proof-driven operator identity.</div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🛡️</div>
+        <div class="value-name">Loyalty & Integrity</div>
+        <div class="value-sub">Non-negotiable in every dimension</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-name">Servant Leadership</div>
+        <div class="value-sub">Leads from the front — always</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📊</div>
+        <div class="value-name">Proof Over Persuasion</div>
+        <div class="value-sub">The professional thesis in three words</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚙️</div>
+        <div class="value-name">Systems Thinking</div>
+        <div class="value-sub">Scales impact beyond individual effort</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🧊</div>
+        <div class="value-name">Calm Under Pressure</div>
+        <div class="value-sub">Handles escalations and high-stakes moments</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <div class="value-name">Growth-Oriented</div>
+        <div class="value-sub">Always pushing forward and evolving</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="closing-quote">
+      "I am not here to manage accounts.<br>I am here to help grow the system that <span>compounds Arkose Labs's customer revenue</span> for years to come."
+    </div>
+    <div class="stat-strip" style="border: none; margin-bottom: 0;">
+      <div class="stat-item"><div class="stat-value">20</div><div class="stat-label">Years CS Experience</div></div>
+      <div class="stat-item"><div class="stat-value">120%+</div><div class="stat-label">NRR</div></div>
+      <div class="stat-item"><div class="stat-value">&lt;3%</div><div class="stat-label">Churn</div></div>
+      <div class="stat-item"><div class="stat-value">15×</div><div class="stat-label">Growth</div></div>
+      <div class="stat-item"><div class="stat-value">2</div><div class="stat-label">IPOs</div></div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
